@@ -29,7 +29,7 @@ height = int(stream.get(4))
 
 # list of FourCC video codes: https://softron.zendesk.com/hc/en-us/articles/207695697-List-of-FourCC-codes-for-video-codecs
 output = cv2.VideoWriter("assets/8_no_background.mp4",
-            cv2.VideoWriter_fourcc('m', 'p', '4', 'v'),
+            cv2.VideoWriter_fourcc('m', 'p', 'g', '4'),
             fps=fps, frameSize=(width, height))
 
 stream.set(cv2.CAP_PROP_POS_FRAMES, 0)
@@ -45,7 +45,7 @@ while True:
     threshold, diff = cv2.threshold(dif_frame, 100, 255,
                     cv2.THRESH_BINARY)
     # frame = cv2.resize(frame, (width, height))
-    output.write(frame)
+    output.write(diff)
     cv2.imshow("Video!", diff)
     cv2.waitKey(20)
     if cv2.waitKey(1) == ord('q'): # press "q" to quit
